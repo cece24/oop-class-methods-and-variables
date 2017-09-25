@@ -21,10 +21,19 @@ class Book
   def self.borrowed
     @@on_loan
   end
+
+  def self.browse
+    @@on_shelf.sample
+  end
 end
 
 new_book = Book.create("Booping", "Cece", "2424")
 puts new_book.inspect
 
+new_book = Book.create("Another One", "DJ Khaled", "2425")
+new_book = Book.create("Meows", "Professor Meow", "2426")
+
 puts Book.available.inspect
 puts Book.borrowed.inspect
+
+puts Book.browse.inspect

@@ -60,8 +60,10 @@ class Zombie
     outrun = self.outrun_zombie?
     survive = self.survive_attack?
     # escape unscathed
-    if outrun || survive
+    if outrun
       puts "You escaped unscathed!"
+    elsif survive
+      puts "You've become a zombie!"
     else
       puts "You were killed by the zombie!"
     end

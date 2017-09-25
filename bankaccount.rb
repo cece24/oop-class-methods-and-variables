@@ -12,6 +12,15 @@ class BankAccount
     return new_account
   end
 
+  def self.total_funds
+    sum_of_funds = 0
+    @@accounts.each do |account|
+      sum_of_funds += account.balance
+    end
+
+    return sum_of_funds
+  end
+
   def initialize
     @balance = 0
 
@@ -35,10 +44,14 @@ class BankAccount
 
 end
 
-puts BankAccount.create.inspect
-puts BankAccount.create.inspect
-puts BankAccount.get_all_accounts.inspect
+my_account = BankAccount.create
+janes_account = BankAccount.create
 
+my_account.deposit(500)
+janes_account.deposit(600)
+
+puts BankAccount.get_all_accounts.inspect
+puts BankAccount.total_funds.inspect
 # my_account = BankAccount.new
 #
 # puts "Your account balance is #{my_account.balance}"

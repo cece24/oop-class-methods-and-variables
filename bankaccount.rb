@@ -2,6 +2,10 @@ class BankAccount
   @@interest_rate = 0.0
   @@accounts = []
 
+  def self.get_all_accounts
+    @@accounts
+  end
+
   def self.create
     new_account = BankAccount.new
     @@accounts << new_account
@@ -32,6 +36,8 @@ class BankAccount
 end
 
 puts BankAccount.create.inspect
+puts BankAccount.create.inspect
+puts BankAccount.get_all_accounts.inspect
 
 # my_account = BankAccount.new
 #

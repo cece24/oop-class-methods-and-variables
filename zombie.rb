@@ -49,7 +49,11 @@ class Zombie
   end
 
   def self.some_die_off
-    @@horde = @@horde.drop(rand(11))
+    # solution 1: drop the first n number of objects from array
+    # @@horde = @@horde.drop(rand(11))
+
+    zombies_to_delete = @@horde.sample(rand(11))
+    @@horde -= zombies_to_delete
   end
 end
 

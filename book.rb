@@ -25,6 +25,10 @@ class Book
   def self.browse
     @@on_shelf.sample
   end
+
+  def self.lent_out?(book_title)
+    @@on_loan.include?(book_title)
+  end
 end
 
 new_book = Book.create("Booping", "Cece", "2424")
@@ -37,3 +41,5 @@ puts Book.available.inspect
 puts Book.borrowed.inspect
 
 puts Book.browse.inspect
+
+puts "Check if \"Booping\" is lent out: #{Book.lent_out?("Booping")}"

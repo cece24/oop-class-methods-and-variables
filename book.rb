@@ -54,6 +54,17 @@ class Book
   def due_date
     @due_date
   end
+
+  def return_to_library
+    if self.lent_out?
+      @due_date = nil
+      @@on_loan.delete(self)
+      @@on_shelf.push(self)
+      puts "Thank you for returning the book #{@title}!"
+    else
+      puts "The book is not lent out, no return required."
+    end
+  end
 end
 
 new_book = Book.create("Booping", "Cece", "2424")
@@ -74,4 +85,8 @@ puts Book.current_due_date
 new_book.borrow
 puts Book.available.inspect
 puts Book.borrowed.inspect
+puts "#{new_book.title} is lent out: #{new_book.lent_out?} and is due #{new_book.due_date}"
+
+new_book3.return_to_library
+new_book.return_to_library
 puts "#{new_book.title} is lent out: #{new_book.lent_out?} and is due #{new_book.due_date}"

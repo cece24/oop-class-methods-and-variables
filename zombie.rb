@@ -59,7 +59,6 @@ class Zombie
   def encounter
     outrun = self.outrun_zombie?
     survive = self.survive_attack?
-    # escape unscathed
     if outrun
       puts "You escaped unscathed!"
     elsif survive
@@ -68,10 +67,6 @@ class Zombie
     else
       puts "You were killed by the zombie!"
     end
-    # killed by zombie_opponent
-
-    # catching plague and becoming zombie
-
   end
 
   def speed

@@ -26,8 +26,8 @@ class Book
     @@on_shelf.sample
   end
 
-  def self.lent_out?(book_title)
-    @@on_loan.include?(book_title)
+  def lent_out?
+    @@on_loan.include?(self)
   end
 
   def self.current_due_date
@@ -35,7 +35,7 @@ class Book
   end
 
   def borrow
-    if Book.lent_out?(@title)
+    if self.lent_out?
       puts "I'm sorry, the book is current lent out"
     else
       puts "Sure, you can borrow this book titled #{@title}"
@@ -45,6 +45,14 @@ class Book
       @@on_shelf.delete(self)
       @@on_loan.push(self)
     end
+  end
+
+  def title
+    @title
+  end
+
+  def due_date
+    @due_date
   end
 end
 
@@ -59,10 +67,11 @@ puts Book.borrowed.inspect
 
 puts Book.browse.inspect
 
-puts "Check if \"Booping\" is lent out: #{Book.lent_out?("Booping")}"
+puts "Check if #{new_book.title} is lent out: #{new_book.lent_out?}"
 
 puts Book.current_due_date
 
 new_book.borrow
 puts Book.available.inspect
 puts Book.borrowed.inspect
+puts "#{new_book.title} is lent out: #{new_book.lent_out?} and is due #{new_book.due_date}"

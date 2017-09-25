@@ -55,15 +55,51 @@ class Zombie
     zombies_to_delete = @@horde.sample(rand(11))
     @@horde -= zombies_to_delete
   end
+
+  def encounter
+    # escape unscathed
+    if self.outrun_zombie?
+      puts "You escaped unscathed!"
+    else
+      puts "You were caught by the zombie!"
+    end
+    # killed by zombie_opponent
+
+    # catching plague and becoming zombie
+
+  end
+
+  def speed
+    @speed
+  end
+
+  def outrun_zombie?
+    my_speed = rand(@@max_speed)
+    puts "My speed is: #{my_speed} vs zombie speed of #{self.speed}"
+
+    if my_speed > self.speed
+      outrun = true
+    else
+      outrun = false
+    end
+  end
+
+  def survive_attack?
+
+  end
 end
 
 Zombie.spawn
 puts Zombie.all.inspect
 
-Zombie.some_die_off
-puts Zombie.all.inspect
-puts "Current number of zombies: #{Zombie.all.length}"
+# Zombie.some_die_off
+# puts Zombie.all.inspect
+# puts "Current number of zombies: #{Zombie.all.length}"
 
 # Zombie.new_day
 # puts Zombie.all.inspect
 # puts "Current plague level is: #{Zombie.plague_level?}"
+
+zombie1 = Zombie.all[0]
+puts "This is the zombie you're encountering #{zombie1.inspect}"
+zombie1.encounter

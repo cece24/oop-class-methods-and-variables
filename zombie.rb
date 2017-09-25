@@ -2,6 +2,10 @@ class Zombie
   @@horde = []
   @@plague_level = 10
 
+  def self.plague_level?
+    @@plague_level
+  end
+
   #following variables do not change in value
   @@max_speed = 5
   @@max_strength = 8
@@ -33,11 +37,29 @@ class Zombie
       @@horde << Zombie.new(rand( @@max_speed ), rand( @@max_strength ))
     end
   end
+
+  def self.new_day
+    self.increase_plague_level
+    self.spawn
+    self.some_die_off
+  end
+
+  def self.increase_plague_level
+    @@plague_level += rand(3)
+  end
+
+  def self.some_die_off
+    @@horde = @@horde.drop(rand(11))
+  end
 end
-
-me_so_dead = Zombie.new(3, 6)
-
-puts me_so_dead.inspect
 
 Zombie.spawn
 puts Zombie.all.inspect
+
+Zombie.some_die_off
+puts Zombie.all.inspect
+puts "Current number of zombies: #{Zombie.all.length}"
+
+# Zombie.new_day
+# puts Zombie.all.inspect
+# puts "Current plague level is: #{Zombie.plague_level?}"

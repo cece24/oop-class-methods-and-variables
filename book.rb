@@ -29,6 +29,10 @@ class Book
   def self.lent_out?(book_title)
     @@on_loan.include?(book_title)
   end
+
+  def self.current_due_date
+    Time.now + (60 * 60 * 24 * 7)
+  end
 end
 
 new_book = Book.create("Booping", "Cece", "2424")
@@ -43,3 +47,5 @@ puts Book.borrowed.inspect
 puts Book.browse.inspect
 
 puts "Check if \"Booping\" is lent out: #{Book.lent_out?("Booping")}"
+
+puts Book.current_due_date

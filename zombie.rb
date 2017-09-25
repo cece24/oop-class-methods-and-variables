@@ -57,11 +57,13 @@ class Zombie
   end
 
   def encounter
+    outrun = self.outrun_zombie?
+    survive = self.survive_attack?
     # escape unscathed
-    if self.outrun_zombie?
+    if outrun || survive
       puts "You escaped unscathed!"
     else
-      puts "You were caught by the zombie!"
+      puts "You were killed by the zombie!"
     end
     # killed by zombie_opponent
 
@@ -71,6 +73,10 @@ class Zombie
 
   def speed
     @speed
+  end
+
+  def strength
+    @strength
   end
 
   def outrun_zombie?
@@ -85,7 +91,14 @@ class Zombie
   end
 
   def survive_attack?
+    my_strength = rand(@@max_strength)
+    puts "My strength is #{my_strength} vs zombie strength of #{self.strength}"
 
+    if my_strength > self.strength
+      survive = true
+    else
+      survive = false
+    end
   end
 end
 

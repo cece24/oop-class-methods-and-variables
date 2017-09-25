@@ -39,6 +39,11 @@ class Book
       puts "I'm sorry, the book is current lent out"
     else
       puts "Sure, you can borrow this book titled #{@title}"
+      # set due date for book
+      @due_date = Book.current_due_date
+      # remove from on_shelf and add to on_loan
+      @@on_shelf.delete(self)
+      @@on_loan.push(self)
     end
   end
 end
@@ -58,4 +63,6 @@ puts "Check if \"Booping\" is lent out: #{Book.lent_out?("Booping")}"
 
 puts Book.current_due_date
 
-puts new_book.borrow
+new_book.borrow
+puts Book.available.inspect
+puts Book.borrowed.inspect

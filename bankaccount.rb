@@ -1,5 +1,5 @@
 class BankAccount
-  @@interest_rate = 0.0
+  @@interest_rate = 0.05
   @@accounts = []
 
   def self.get_all_accounts
@@ -19,6 +19,12 @@ class BankAccount
     end
 
     return sum_of_funds
+  end
+
+  def self.interest_time
+    @@accounts.each do |account|
+      account.balance *= (1 + @@interest_rate)
+    end
   end
 
   def initialize
@@ -52,6 +58,11 @@ janes_account.deposit(600)
 
 puts BankAccount.get_all_accounts.inspect
 puts BankAccount.total_funds.inspect
+
+BankAccount.interest_time
+puts BankAccount.get_all_accounts.inspect
+puts BankAccount.total_funds.inspect
+
 # my_account = BankAccount.new
 #
 # puts "Your account balance is #{my_account.balance}"

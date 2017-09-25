@@ -33,13 +33,21 @@ class Book
   def self.current_due_date
     Time.now + (60 * 60 * 24 * 7)
   end
+
+  def borrow
+    if Book.lent_out?(@title)
+      puts "I'm sorry, the book is current lent out"
+    else
+      puts "Sure, you can borrow this book titled #{@title}"
+    end
+  end
 end
 
 new_book = Book.create("Booping", "Cece", "2424")
 puts new_book.inspect
 
-new_book = Book.create("Another One", "DJ Khaled", "2425")
-new_book = Book.create("Meows", "Professor Meow", "2426")
+new_book2 = Book.create("Another One", "DJ Khaled", "2425")
+new_book3 = Book.create("Meows", "Professor Meow", "2426")
 
 puts Book.available.inspect
 puts Book.borrowed.inspect
@@ -49,3 +57,5 @@ puts Book.browse.inspect
 puts "Check if \"Booping\" is lent out: #{Book.lent_out?("Booping")}"
 
 puts Book.current_due_date
+
+puts new_book.borrow

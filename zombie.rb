@@ -64,6 +64,7 @@ class Zombie
       puts "You escaped unscathed!"
     elsif survive
       puts "You've become a zombie!"
+      @@horde << Zombie.new(rand( @@max_speed ), rand( @@max_strength ))
     else
       puts "You were killed by the zombie!"
     end
@@ -115,6 +116,8 @@ puts Zombie.all.inspect
 # puts Zombie.all.inspect
 # puts "Current plague level is: #{Zombie.plague_level?}"
 
+puts "There are #{Zombie.all.length} zombies."
 zombie1 = Zombie.all[0]
 puts "This is the zombie you're encountering #{zombie1.inspect}"
 zombie1.encounter
+puts "There are now #{Zombie.all.length} zombies."

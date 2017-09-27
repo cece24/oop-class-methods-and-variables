@@ -65,6 +65,8 @@ puts Vampire.coven_status.inspect
 
 dracula.drink_blood
 dracula.go_home
+batboy.drink_blood
+batboy.go_home
 
 Vampire.sunrise
 puts Vampire.coven_status.inspect
